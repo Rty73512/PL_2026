@@ -1,5 +1,6 @@
 import pygame
 from pygame.draw import *
+from random import *
 
 pygame.init()
 
@@ -12,6 +13,14 @@ DARK_GRAY = (130, 130, 130)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 PINK = (255, 192, 203)
+ORANGE = (255, 165, 0)
+GREEN = (0, 255, 0)
+
+def crt(screen, x, y, size):
+    polygon(screen, ORANGE, [(x, y), (x+30*size, y), (x+15*size, y+size*40)])
+    line(screen, GREEN, (x+15*size, y), (x+15*size, y-10*size))
+    line(screen, GREEN, (x+15*size, y), (x+20*size, y-10*size))
+    line(screen, GREEN, (x+15*size, y), (x, y-10*size))
 
 def draw_ear(screen, x, y, color_main, color_outline, color_inner, ear_width, ear_height):
     """
@@ -174,6 +183,8 @@ width, height = 200, 400
 # Рисуем зайца одной командой
 draw_hare(screen, x, y, width, height)
 
+for i in range(randint(1, 8)):
+    crt(screen, randint(0, 400), randint(0, 400), randint(1, 3))
 pygame.display.update()
 clock = pygame.time.Clock()
 finished = False
